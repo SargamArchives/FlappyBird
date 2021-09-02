@@ -24,7 +24,7 @@ GRAVITY = 1
 GRAVITY_INCREMENT = 0.4
 OBSTACLE_RANGE = ...
 ANGLE = 0
-
+COLOR = (0, 0, 0)
 obstacle_list = []
 
 
@@ -141,12 +141,16 @@ class GameStuff:
         self.foreground_image_rect = self.foreground_image.get_rect(
             midtop=(SCREEN_WIDTH / 2, 550)
         )
+        self.game_over_image = image.load("assets/gameover.png").convert_alpha()
+        self.game_over_rect = self.game_over_image.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        )
 
     def check_game(self) -> None:
         for game_event in event.get():
-                if game_event.type == QUIT:
-                    quit()
-                    exit()
+            if game_event.type == QUIT:
+                quit()
+                exit()
 
     def initial_game(self) -> None:
         while True:
@@ -161,7 +165,6 @@ class GameStuff:
         while True:
             self.check_game()
             display.update()
-            
 
     def show(self) -> None:
         screen.blit(self.background, self.background_rect)
@@ -176,12 +179,43 @@ class GameStuff:
 
     def check_score(self) -> None:
         with open("score.txt", "r") as f:
-            if self.score > int(f.readline()):
+            self.high_score = f.readline()
+            if self.score > int(self.high_score):
+                self.high_score = self.score
                 self.write_score()
 
     def write_score(self) -> None:
         with open("score.txt", "w") as f:
             f.write(str(self.score))
+
+    def post_game(self) -> None:
+        print("post game phase")
+        high_score_font = score_font.render("High Score", True, COLOR)
+        high_score_rect = high_score_font.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 200)
+        )
+        high_font_surf = score_font.render(str(self.high_score), True, COLOR)
+        high_font_rect = high_font_surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 150)
+        )
+
+        current_score_font = score_font.render("Current Score", True, COLOR)
+        current_score_font_rect = current_score_font.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100)
+        )
+        current_score_surf = score_font.render(str(self.score), True, COLOR)
+        current_score_rect = current_score_surf.get_rect(
+            center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 50)
+        )
+        while True:
+            self.check_game()
+            screen.blit(self.game_over_image, self.game_over_rect)
+            screen.blit(high_score_font, high_score_rect)
+            screen.blit(high_font_surf, high_font_rect)
+            screen.blit(current_score_surf, current_score_rect)
+            screen.blit(current_score_font, current_score_font_rect)
+            self.score = 0
+            display.update()
 
     def start_game(self) -> None:
         self.initial_game()
@@ -210,12 +244,12 @@ class GameStuff:
                 else:
                     self.fall_music.play()
                     self.check_score()
-                    self.score = 0
-                    break
+                    self.post_game()
             else:
                 self.collide_music.play()
                 self.check_score()
-                self.score = 0
+                self.post_game()
+
             self.display_score()
             self.display_foreground()
 
@@ -227,7 +261,7 @@ init()
 screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = time.Clock()
 display.set_caption("Flappy Bird")
-score_font = font.Font("fonts/04B_19.TTF", 50)
+score_font = font.Font("fonts/04B_19.TTF", 40)
 
 flappy_bird = GameStuff()
 
