@@ -1,5 +1,5 @@
 <h1 align="center">Pygame</h1>
-<img src="https://cutt.ly/yWm5Z5k" height="40px">
+<img src="https://cutt.ly/yWm5Z5k" height="100px" align="center">
 
 <h2>Info</h2>
 <ul>
@@ -13,24 +13,24 @@
     <li>
         To run this you must have <a href="https://pypi.org/project/pipenv/">pipenv</a> installed.
         In order to install pipenv do
-        ```bash
+        <code>```bash
         pip install pipenv
-        ```
+        ```</code>
     </li>
     <li>
         After you install pipenv, perform the following commands
-        ```bash
+        <code>```bash
         git clone https://github.com/sargam-poudel/pygame/
-        ```
+        ```</code>
     </li>
     <li>After you clone the repo, do the following commands
-        ```bash
+        <code>```bash
         pipenv install Pipfile
-        ```
+        ```</code>
         and to get virtual environment
-        ```bash
+        <code>```bash
         pipenv shell
-        ```
+        ```</code>
     </li>
     <li>After all that hassle, go into the actual project directory and run the required script.</li>
 </ul>
