@@ -1,36 +1,28 @@
-<h1 align="center">Pygame</h1>
-<img src="https://cutt.ly/yWm5Z5k" height="100px" align="center">
+# Pygame 🐍 🎮
+### [Pygame](https://www.pygame.org/) is a corss-platform Open source python library for creating some games. 
+![pygame image](https://cutt.ly/yWm5Z5k)
 
-<h2>Info</h2>
-<ul>
-    <li>
-        This repository is made so I could turn my ideas into some sort of GUI ideas.
-    </li>
-</ul>
+## Info
+- This repository is made so I could turn my ideas into some sort of GUI games or ideas or some computer represenation of physics concepts.
 
-<h2>How do I run?🤔</h2>
-<ul>
-    <li>
-        To run this you must have <a href="https://pypi.org/project/pipenv/">pipenv</a> installed.
-        In order to install pipenv do
-        <code>```bash
-        pip install pipenv
-        ```</code>
-    </li>
-    <li>
-        After you install pipenv, perform the following commands
-        <code>```bash
-        git clone https://github.com/sargam-poudel/pygame/
-        ```</code>
-    </li>
-    <li>After you clone the repo, do the following commands
-        <code>```bash
-        pipenv install Pipfile
-        ```</code>
-        and to get virtual environment
-        <code>```bash
-        pipenv shell
-        ```</code>
-    </li>
-    <li>After all that hassle, go into the actual project directory and run the required script.</li>
-</ul>
+## How do I run? 🤔
+- To run this you must have [pipenv](https://pypi.org/project/pipenv/) installed.
+- In order to install pipenv do
+```bash
+pip install pipenv
+```
+
+- After you install pipenv, perform the following commands
+```bash
+git clone https://github.com/sargam-poudel/pygame/
+```
+- After you clone the repo, do the following commands
+```bash
+pipenv install Pipfile
+```
+- and to get virtual environment
+```bash
+pipenv shell
+```
+
+- After all that hassle, go into the actual project directory and run the required script.
